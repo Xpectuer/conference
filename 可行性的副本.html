@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>基于移动边缘计算的分布式众包道路流量监测解决方案｜第二版（大纲）</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="基于移动边缘计算的分布式众包道路流量监测解决方案第二版大纲">基于移动边缘计算的分布式众包道路流量监测解决方案｜第二版（大纲）</h1>
+<h2 id="综述">综述</h2>
+<ol>
+<li>改善传统道路监测模式的弊端：高成本的路网监测系统搭建。</li>
+<li>本项目融合了<strong>众包</strong>的思想，从用户的移动设备提取位置信息，克服传统监测系统模式的弊端。</li>
+<li>为有道路监测需求的机关部门提供一种高可用、高实时、低成本的道路流量监测解决方案。</li>
+<li>为市民日常出行的拥堵问题，提供解决方案。</li>
+</ol>
+<hr>
+<h2 id="计算模型">计算模型</h2>
+<h3 id="模型">模型</h3>
+<p>根据<a href="">Wardrop的匀质离散型交通流模型</a>为基础的<strong>区间</strong>匀速估计方法</p>
+<blockquote>
+<p>see <a href="./Model_Iteration.html">Model</a></p>
+</blockquote>
+<p><strong>Summary:</strong></p>
+<ol>
+<li>计算<strong>各子交通流</strong>出现的概率</li>
+<li>计算路段的速度期望值</li>
+<li>计算路段的拥堵程度（期望速度与绿波标准速度的比值）</li>
+</ol>
+<p><font size='4'><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>u</mi><mo>ˉ</mo></mover><mi>s</mi></msub><mo>=</mo><mi>E</mi><mo stretchy="false">(</mo><msub><mi>u</mi><mi>s</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msubsup><mo>∑</mo><mn>1</mn><mi>C</mi></msubsup><msub><mi>u</mi><mi>i</mi></msub><msub><mi>p</mi><mi>s</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mspace linebreak="newline"></mspace><msubsup><mo>∑</mo><mn>1</mn><mi>C</mi></msubsup><mfrac><mrow><msub><mi>u</mi><mi>i</mi></msub><msub><mi>k</mi><mi>i</mi></msub></mrow><mi>k</mi></mfrac><mo>=</mo><msubsup><mo>∑</mo><mn>1</mn><mi>C</mi></msubsup><msub><mi>q</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><mi>k</mi><mspace linebreak="newline"></mspace><mo>=</mo><mi>q</mi><mi mathvariant="normal">/</mi><mi>k</mi><mspace linebreak="newline"></mspace><mi>ε</mi><mo>=</mo><mover accent="true"><mfrac><msub><mi>u</mi><mi>s</mi></msub><mi>u</mi></mfrac><mo>ˉ</mo></mover></mrow><annotation encoding="application/x-tex">\bar{u}_s=E(u_{s}) =\sum_{1}^{C}u_ip_s(i)=
+  \\
+  \sum_{1}^{C}\frac{u_ik_i}{k}
+ =\sum^{C}_{1}q_i/k
+ \\
+ = q/k\\
+\varepsilon=\bar \frac{u_s}{u}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.71778em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">u</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;"><span class="mord">ˉ</span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.326231em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8962079999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.03148em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.1932719999999999em;vertical-align:-0.345em;"></span><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8482719999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7114919999999999em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">s</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span style="top:-3.280492em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span></span></span></span>
+</font></p>
+<ol start="4">
+<li>后台系统发送代码</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码</th>
+<th style="text-align:right">拥堵系数</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>00:</strong></td>
+<td style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\varepsilon &gt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">道路通畅</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>01</strong></td>
+<td style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\varepsilon &lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">轻微拥堵</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>10</strong></td>
+<td style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\varepsilon &lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">中度拥堵</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>11</strong></td>
+<td style="text-align:right"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\varepsilon &lt;1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></td>
+<td style="text-align:center">严重拥堵</td>
+</tr>
+</tbody>
+</table>
+<p><strong>已知的问题：</strong></p>
+<ol>
+<li>不考虑交通事故等因素等情况，<strong>样本点集中于某一测速点或测速点外</strong>导致描述性较差（样本点数据不能代表整条路段数据）</li>
+<li>跟驰模型、司机变道行为等尚未加入考虑范围，导致系统鲁棒性可能不足</li>
+<li>方向问题</li>
+</ol>
+<hr>
+<h2 id="问题解决">问题解决：</h2>
+<h3 id="问题2">问题2:</h3>
+<blockquote>
+<p>对于问题2，上述模型的问题在于，若是用设置观测点的形式测瞬时速度，难免出现样本集中的问题</p>
+</blockquote>
+<h3 id="解决方案">解决方案</h3>
+<ol>
+<li>用计时方式发送，系统<strong>每隔一段时间</strong>进行
+<ol>
+<li>速度测算</li>
+<li>按速度筛分子交通流</li>
+<li>计算路段平均速度</li>
+<li>计算路段拥堵状况</li>
+</ol>
+</li>
+<li>方案的核心在于，找出合适的<strong>时间间隔</strong>
+<ol>
+<li><strong>于此，将查阅一些论文文献后，再进行方案更深入的探讨</strong></li>
+</ol>
+</li>
+</ol>
+<h3 id="问题3">问题3:</h3>
+<ul>
+<li>给出系统计算上，对于方向数据的<strong>识别与处理</strong>方式</li>
+<li>亟待讨论</li>
+</ul>
+<hr>
+<h2 id="系统构架">系统构架</h2>
+<ol>
+<li>系统整体采用<strong>C-S模式</strong>的架构</li>
+<li>客户端基于移动app的<strong>数据采集</strong>和<strong>数据展示</strong></li>
+<li>服务端采用<strong>微服务架构</strong>，目的如下：
+<ol>
+<li>对于系统<strong>解耦</strong>，提高开发效率</li>
+<li>提高系统整体的性能</li>
+<li>方便以分布式的方式部署，降低服务架设的成本</li>
+</ol>
+</li>
+<li>整体架构展示图
+<hr>
+<img src="file:////Users/alex/Desktop/2020Courses/本科生项目/会议/Architecture.jpg" alt="arch">
+<hr>
+</li>
+</ol>
+<h2 id="移动app集群">移动APP集群</h2>
+<ol>
+<li>
+<p>位置信息模块：</p>
+<ol>
+<li>基于外部高德SDK的地图与定位服务调用</li>
+<li>在基本位置信息的基础上，<s>提供区块划分的数据服务功能</s>（亟待讨论）</li>
+</ol>
+</li>
+<li>
+<p>数据展示模块：</p>
+<ol>
+<li><strong>若无必要，勿增实体</strong>：<br>
+为用户展示以<strong>用户</strong>为中心，特定半径的圆形区域内的区域拥堵状况。</li>
+<li>提供某区域整体路况（亟待讨论）</li>
+</ol>
+</li>
+<li>
+<p>数据发送控制模块：</p>
+<ol>
+<li>控制用户设备的数据发送间隔，以控制服务端<strong>负载</strong></li>
+<li>控制app对于移动设备的性能占用</li>
+</ol>
+</li>
+<li>
+<p>数据缓存模块：</p>
+<ol>
+<li>以提高用户体验为主，降低用户对于数据展示的等待时间</li>
+</ol>
+</li>
+</ol>
+<h2 id="服务端">服务端</h2>
+<ol>
+<li>API服务
+<ol>
+<li>遵循<strong>RESTFul</strong>标准格式，确保第三方接入的可靠性</li>
+<li>提供详尽的<strong>接口文档</strong></li>
+<li>用例驱动，<strong>减少冗余</strong>的接口设计</li>
+<li>为API分级，减少破坏性开发过程的出现</li>
+<li><strong>开发前务必与前端商讨好接口格式</strong></li>
+</ol>
+</li>
+<li>SOA
+<ol>
+<li>服务注册发现，微服务的核心调度（Netflix Eureka）</li>
+<li>负载均衡，提高并发，提高系统整体效能</li>
+<li>服务熔断（Hystrix）、降级等非业务化的提高<strong>可用性</strong>的服务模块</li>
+<li>消息队列（以后可能的邮件短信服务）等</li>
+<li>分布式的日志解决方案，降低运维成本</li>
+</ol>
+</li>
+<li>持久化
+<ol>
+<li>采用缓存策略，提高系统整体可用性、并发性。</li>
+<li>采用<s>传统的关系型数据库</s> <strong>NoSQL数据库</strong> 进行存储。
+<ol>
+<li>由于采用分布式系统，的缘故，传统关系型数据库的ACID事务管理对数据的存储效率产生<strong>瓶颈</strong>和不稳定因素，并且关系型数据库的可伸缩性较差，<strong>不利于</strong>在<strong>分布式系统</strong>的部署。</li>
+<li>NoSQL可以很好地避免<strong>ACID事务</strong>的限制，并且往往具有对<strong>海量数据</strong>的<strong>高效查询效率</strong></li>
+<li>下图呈现了关系型数据库MySQL与图数据库Neo4J<strong>在关系处理问题上的</strong>性能差距
+<img src="file:////Users/alex/Desktop/2020Courses/本科生项目/会议/Comparison.png" alt="image"></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>一,是图数据库(<strong>Neo4j</strong>)，通过节点间关系表示道路拥堵程度<br>
+<img src="file:////Users/alex/Desktop/2020Courses/本科生项目/会议/%E5%9B%BE%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%AF%E8%A1%8C%E6%80%A7%202.jpg" alt="Graphic">
+二,是文档式的数据库(<strong>MongoDB</strong>)，将路网中的每一条路视作对象，存储类似JSON对象式的数据</p>
+</blockquote>
+<p><img src="file:////Users/alex/Desktop/2020Courses/本科生项目/会议/NoSQL.png" alt="NoSQL"></p>
+<ol>
+<li>数据计算
+<ol>
+<li>模型的定义</li>
+<li>算法实现</li>
+<li>数据库交互方式（存储策略）</li>
+</ol>
+</li>
+</ol>
+<hr>
+<p>TODO：</p>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> 模型算法简述</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"> NoSQL产品选型</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> UML图改进</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox"> 文案</li>
+</ul>
+
+    </body>
+    </html>
